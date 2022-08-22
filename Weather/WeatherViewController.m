@@ -25,6 +25,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.weatherData = [[WeatherData alloc] init];
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self selector:@selector(loadViewWithWeatherData:) name:@"weatherDataDidGet" object:nil];
+}
+
+-(void) loadViewWithWeatherData:(NSNotification *)gotDataNotification {
+    NSLog(@"getNotification");
+    self.cityButton.titleLabel.text = [[NSString alloc] initWithFormat:@"+ %@", self.weatherData.cityName];
+    NSLog(@"cityButton.text = %@", self.cityButton.titleLabel.text);
 }
 
 #pragma mark - Navigation

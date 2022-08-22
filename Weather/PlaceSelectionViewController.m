@@ -31,6 +31,9 @@
     [self.weatherData getWeatherDataOnline];
     [self.weatherData getWeatherIndiceOnline];
     [self.weatherData getWeekForcastDataOnline];
+    NSNotification *notification = [[NSNotification alloc] initWithName:@"weatherDataDidGet" object:nil userInfo:@{@"key":cityName}];
+    [[NSNotificationCenter defaultCenter] postNotification:notification];
+    NSLog(@"postNotification");
 }
 
 -(void) locationButtonClicked:(id)sender {
@@ -82,23 +85,21 @@
     } else {
         searchBar.showsCancelButton = YES;
     }
+    self.prevText = nil;
 }
 -(void) searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     NSLog(@"3");
     searchBar.text = @"";
     searchBar.showsCancelButton = NO;
     [searchBar resignFirstResponder];   //退回键盘
+    self.prevText = nil;
 }
 -(void) searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     NSLog(@"4");
     [searchBar resignFirstResponder];
     NSString *currText = searchBar.text;
     if (currText != nil && ![self.prevText isEqualToString:currText]) {
-        //[self cityNameDidGet:currText];
-        self.weatherData.cityName = currText;
-        [self.weatherData getWeatherDataOnline];
-        [self.weatherData getWeatherIndiceOnline];
-        [self.weatherData getWeekForcastDataOnline];
+        [self cityNameDidGet:currText];
     }
     self.prevText = currText;
 }

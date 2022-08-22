@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) WeatherData *weatherData;
 @property(weak) IBOutlet UIButton *cityButton;
 @property(weak) IBOutlet UITableView *weatherDataTV;
-
+-(void) loadViewWithWeatherData: (NSNotification *) gotDataNotification;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -38,45 +38,11 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="+ 选择城市"/>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="aX7-71-qwN">
-                                <rect key="frame" x="0.0" y="103" width="414" height="684"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="228" id="k64-3x-MDf" userLabel="comfortIndex">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="228"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="k64-3x-MDf" id="H2U-Js-EKg">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="228"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" tag="1" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="228" id="jaa-Qp-Byo" userLabel="sportIndex">
-                                        <rect key="frame" x="0.0" y="272.5" width="414" height="228"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jaa-Qp-Byo" id="Ccf-Sk-BVE">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="228"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" tag="2" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="228" id="gH2-O1-9S3" userLabel="makeupIndex">
-                                        <rect key="frame" x="0.0" y="500.5" width="414" height="228"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gH2-O1-9S3" id="8c9-54-a7n">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="228"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7WV-kn-4tB"/>
                         <color key="backgroundColor" systemColor="systemGray4Color"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="生活指数" id="VM1-UR-Cav"/>
-                    <connections>
-                        <outlet property="IndexTV" destination="k64-3x-MDf" id="mAK-pP-4vH"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GoC-kg-GNt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -228,14 +194,13 @@
         <!--mainViewController-->
         <scene sceneID="rUF-Jd-oVj">
             <objects>
-                <tabBarController storyboardIdentifier="mainViewController" title="mainViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MJm-2D-Bcr" customClass="MyTabBarController" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="mainViewController" title="mainViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MJm-2D-Bcr" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8D8-2X-TVU">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <outlet property="myTabBar" destination="8D8-2X-TVU" id="kfB-SG-o6c"/>
                         <segue destination="JCw-Tt-60m" kind="relationship" relationship="viewControllers" id="RHW-rs-RwS"/>
                         <segue destination="yrC-Rk-eiA" kind="relationship" relationship="viewControllers" id="WL4-rN-l7g"/>
                         <segue destination="joe-te-qpT" kind="relationship" relationship="viewControllers" id="BYT-4l-OXD"/>

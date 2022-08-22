@@ -11,7 +11,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WeatherIndexController : UIViewController
-@property (nonatomic, weak) IBOutlet UITableViewCell *IndexTV;
 @property (atomic, weak) WeatherData *weatherData;
 @end
 

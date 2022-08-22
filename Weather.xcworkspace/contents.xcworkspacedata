@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:QWeather-Icons">
+   </FileRef>
+   <FileRef
       location = "group:Weather.xcodeproj">
    </FileRef>
    <FileRef

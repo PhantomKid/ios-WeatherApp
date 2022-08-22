@@ -22,6 +22,7 @@
 		8EB5BD9328B2133100E3BFAA /* PlaceSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB5BD9228B2133100E3BFAA /* PlaceSelectionViewController.m */; };
 		8EF4A3BF28B2740300AFF621 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF4A3BE28B2740200AFF621 /* SceneDelegate.m */; };
 		8EF4A3C228B2786200AFF621 /* WeatherIndexController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF4A3C128B2786200AFF621 /* WeatherIndexController.m */; };
+		8EF4A3C928B32FD900AFF621 /* WeatherIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EF4A3C828B32FD900AFF621 /* WeatherIcon.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,10 +51,8 @@
 		8E66155F28AA5C9D001D3D19 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E66156228AA5C9D001D3D19 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8E66156328AA5C9D001D3D19 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		8E66156C28AA5C9D001D3D19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8E66156F28AA5C9D001D3D19 /* Weather.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Weather.xcdatamodel; sourceTree = "<group>"; };
 		8E66157128AA5C9E001D3D19 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8E66157428AA5C9E001D3D19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8E66157628AA5C9E001D3D19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8E66157728AA5C9E001D3D19 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8E66157D28AA5C9F001D3D19 /* WeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,6 +60,10 @@
 		8E66158728AA5C9F001D3D19 /* WeatherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E66158B28AA5C9F001D3D19 /* WeatherUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherUITests.m; sourceTree = "<group>"; };
 		8E66158D28AA5C9F001D3D19 /* WeatherUITestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherUITestsLaunchTests.m; sourceTree = "<group>"; };
+		8E6ABE8D28B368A900132A4C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8E6ABE8E28B368A900132A4C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8E6ABE8F28B368C200132A4C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/Main.storyboard"; sourceTree = "<group>"; };
+		8E6ABE9028B368C200132A4C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.storyboard"; sourceTree = "<group>"; };
 		8EB5BD8E28B1D05400E3BFAA /* WeatherViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherViewController.h; sourceTree = "<group>"; };
 		8EB5BD8F28B1D05400E3BFAA /* WeatherViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherViewController.m; sourceTree = "<group>"; };
 		8EB5BD9128B2133100E3BFAA /* PlaceSelectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaceSelectionViewController.h; sourceTree = "<group>"; };
@@ -69,6 +72,7 @@
 		8EF4A3BE28B2740200AFF621 /* SceneDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
 		8EF4A3C028B2786200AFF621 /* WeatherIndexController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherIndexController.h; sourceTree = "<group>"; };
 		8EF4A3C128B2786200AFF621 /* WeatherIndexController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherIndexController.m; sourceTree = "<group>"; };
+		8EF4A3C828B32FD900AFF621 /* WeatherIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = WeatherIcon.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +141,7 @@
 				8EF4A3BD28B2740200AFF621 /* SceneDelegate.h */,
 				8EF4A3BE28B2740200AFF621 /* SceneDelegate.m */,
 				8E66156B28AA5C9D001D3D19 /* Main.storyboard */,
+				8EF4A3C828B32FD900AFF621 /* WeatherIcon.xcassets */,
 				8EF4A3C028B2786200AFF621 /* WeatherIndexController.h */,
 				8EF4A3C128B2786200AFF621 /* WeatherIndexController.m */,
 				8EB5BD9128B2133100E3BFAA /* PlaceSelectionViewController.h */,
@@ -263,7 +268,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
+				"zh-Hans",
 			);
 			mainGroup = 8E66155628AA5C9D001D3D19;
 			productRefGroup = 8E66156028AA5C9D001D3D19 /* Products */;
@@ -283,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E66157528AA5C9E001D3D19 /* LaunchScreen.storyboard in Resources */,
+				8EF4A3C928B32FD900AFF621 /* WeatherIcon.xcassets in Resources */,
 				8E66157228AA5C9E001D3D19 /* Assets.xcassets in Resources */,
 				8E66156D28AA5C9D001D3D19 /* Main.storyboard in Resources */,
 			);
@@ -381,7 +387,8 @@
 		8E66156B28AA5C9D001D3D19 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				8E66156C28AA5C9D001D3D19 /* Base */,
+				8E6ABE8D28B368A900132A4C /* en */,
+				8E6ABE8F28B368C200132A4C /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -389,7 +396,8 @@
 		8E66157328AA5C9E001D3D19 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				8E66157428AA5C9E001D3D19 /* Base */,
+				8E6ABE8E28B368A900132A4C /* en */,
+				8E6ABE9028B368C200132A4C /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -401,6 +409,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -459,6 +468,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -521,6 +531,7 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Weather/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "简洁天气申请获取您的地理位置";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -552,6 +563,7 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Weather/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "简洁天气申请获取您的地理位置";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

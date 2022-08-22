@@ -11,12 +11,9 @@
 
 int main(int argc, char * argv[]) {
     NSString * appDelegateClassName;
-    //WeatherData *w = [[WeatherData alloc] init];
     @autoreleasepool {
         // Setup code that might create autoreleased objects goes here.
         appDelegateClassName = NSStringFromClass([AppDelegate class]);
-        //w.cityName = @"深圳";
-        //[w getWeekForcastDataOnline];
     }
     return UIApplicationMain(argc, argv, nil, appDelegateClassName);
 }

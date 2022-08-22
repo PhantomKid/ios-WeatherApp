@@ -22,8 +22,8 @@
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    self.locationManager.distanceFilter = kCLDistanceFilterNone;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyReduced;
+    self.locationManager.distanceFilter = 5; //kCLDistanceFilterNone;
 }
 
 -(void) cityNameDidGet:(NSString *)cityName {
@@ -34,11 +34,20 @@
 }
 
 -(void) locationButtonClicked:(id)sender {
-    [self.locationManager requestWhenInUseAuthorization];
-    [self.locationManager startUpdatingLocation];
+    if (self.locationManager == nil) {
+        self.locationManager = [[CLLocationManager alloc] init];
+        self.locationManager.delegate = self;
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    }
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [self.locationManager requestWhenInUseAuthorization];
+        [self.locationManager startUpdatingLocation];
+        NSLog(@"AuthorizationDenied = %d", [self.locationManager authorizationStatus] == kCLAuthorizationStatusDenied);
+    }
 }
 
 -(void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    NSLog(@"didUpdateLocations");
     CLLocation *currLocation = locations.lastObject;
     CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
     [geoCoder reverseGeocodeLocation:currLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
@@ -46,12 +55,17 @@
             CLPlacemark *placemark = [placemarks objectAtIndex:0];
             NSString *cityName = placemark.locality;
             if (cityName == nil) {
+                NSLog(@"3");
                 // 直辖市无法通过locality获取
                 cityName = placemark.administrativeArea;
             }
             if (cityName != nil) {
+                NSLog(@"4");
                 [self cityNameDidGet:cityName];
             }
+        }
+        if (error) {
+            NSLog(@"error = %@", error);
         }
     }];
     [self.locationManager stopUpdatingLocation];

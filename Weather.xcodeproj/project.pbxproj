@@ -22,7 +22,6 @@
 		8EB5BD9328B2133100E3BFAA /* PlaceSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB5BD9228B2133100E3BFAA /* PlaceSelectionViewController.m */; };
 		8EF4A3BF28B2740300AFF621 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF4A3BE28B2740200AFF621 /* SceneDelegate.m */; };
 		8EF4A3C228B2786200AFF621 /* WeatherIndexController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF4A3C128B2786200AFF621 /* WeatherIndexController.m */; };
-		8EF4A3C928B32FD900AFF621 /* WeatherIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EF4A3C828B32FD900AFF621 /* WeatherIcon.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,7 +71,6 @@
 		8EF4A3BE28B2740200AFF621 /* SceneDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
 		8EF4A3C028B2786200AFF621 /* WeatherIndexController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherIndexController.h; sourceTree = "<group>"; };
 		8EF4A3C128B2786200AFF621 /* WeatherIndexController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherIndexController.m; sourceTree = "<group>"; };
-		8EF4A3C828B32FD900AFF621 /* WeatherIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = WeatherIcon.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,7 +139,6 @@
 				8EF4A3BD28B2740200AFF621 /* SceneDelegate.h */,
 				8EF4A3BE28B2740200AFF621 /* SceneDelegate.m */,
 				8E66156B28AA5C9D001D3D19 /* Main.storyboard */,
-				8EF4A3C828B32FD900AFF621 /* WeatherIcon.xcassets */,
 				8EF4A3C028B2786200AFF621 /* WeatherIndexController.h */,
 				8EF4A3C128B2786200AFF621 /* WeatherIndexController.m */,
 				8EB5BD9128B2133100E3BFAA /* PlaceSelectionViewController.h */,
@@ -288,7 +285,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E66157528AA5C9E001D3D19 /* LaunchScreen.storyboard in Resources */,
-				8EF4A3C928B32FD900AFF621 /* WeatherIcon.xcassets in Resources */,
 				8E66157228AA5C9E001D3D19 /* Assets.xcassets in Resources */,
 				8E66156D28AA5C9D001D3D19 /* Main.storyboard in Resources */,
 			);

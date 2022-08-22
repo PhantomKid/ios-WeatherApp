@@ -37,7 +37,6 @@
             |—— PlaceSelectionViewController.m
             |—— Weather.xcdatamodeld
             |—— Assets.xcassets
-            |—— WeatherIcon.xcassets
             |—— Base.lproj
             |—— en.lproj
             |—— zh-Hans.lproj

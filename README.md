@@ -1,5 +1,5 @@
 #  简化版天气预报App项目
-**该项目使用cocoapods对工程进行集成，图片使用开源库SDWebImage下载。天气接口采用的是和风天气免费的开发版API，项目练习使用了TabbarController、TableView等各种控件以及网络请求,json字符串反序列化与本地数据存储
+**该项目使用cocoapods对工程进行集成，图片使用开源库SDWebImage下载。天气接口采用的是和风天气免费的开发版API，项目练习使用了TabbarController、TableView等各种控件以及网络请求,json字符串反序列化与本地数据存储**
 
 ## 项目进度
 1. [x] 天气预报功能

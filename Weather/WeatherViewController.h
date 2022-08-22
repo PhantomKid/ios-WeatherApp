@@ -10,10 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WeatherViewController : UIViewController
-@property(nonatomic, weak) WeatherData *weatherData;
+@interface WeatherViewController : UIViewController 
+@property(nonatomic, strong) WeatherData *weatherData;
 @property(weak) IBOutlet UIButton *cityButton;
 @property(weak) IBOutlet UITableView *weatherDataTV;
+
 @end
 
 NS_ASSUME_NONNULL_END

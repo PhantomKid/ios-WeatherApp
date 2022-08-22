@@ -7,6 +7,14 @@
 
 #import "WeatherViewController.h"
 
+/*
+@implementation MyLocationManager
+-(instancetype) init {
+    self = [super init];
+    return self;
+}
+@end*/
+
 @interface WeatherViewController ()
 
 @end
@@ -16,10 +24,7 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-}
-
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+    self.weatherData = [[WeatherData alloc] init];
 }
 
 #pragma mark - Navigation
@@ -39,4 +44,6 @@
 }
 
 
+- (IBAction)getCurrentLocationButton:(id)sender {
+}
 @end

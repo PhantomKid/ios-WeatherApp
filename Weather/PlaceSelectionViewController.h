@@ -7,21 +7,18 @@
 
 #import <UIKit/UIKit.h>
 #import "WeatherData.h"
+#import <CoreLocation/CoreLocation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MySearchBar : UISearchBar <UISearchBarDelegate>
-@property(weak) WeatherData *weatherData;
+@interface PlaceSelectionViewController : UIViewController <UISearchBarDelegate, CLLocationManagerDelegate>
 @property(atomic, nullable, copy) NSString *prevText;
--(void) searchBarTextDidBeginEditing:(UISearchBar *)searchBar;
--(void) searchBarTextDidEndEditing:(UISearchBar *)searchBar;
--(void) searchBarCancelButtonClicked:(UISearchBar *)searchBar;
--(void) searchBarSearchButtonClicked:(UISearchBar *)searchBar;
-@end
-
-@interface PlaceSelectionViewController : UIViewController
 @property(weak) WeatherData *weatherData;
-@property(weak) IBOutlet MySearchBar *citySearchBar;
+@property(weak) IBOutlet UISearchBar *citySearchBar;
+@property(weak) IBOutlet UIButton *getCurrentLocationButton;
+@property(nonatomic, strong) CLLocationManager *locationManager;
+-(void) cityNameDidGet:(NSString *_Nonnull) cityName;
+- (IBAction)locationButtonClicked:(id)sender;
 @end
 
 NS_ASSUME_NONNULL_END

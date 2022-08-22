@@ -30,6 +30,7 @@
 
 @interface SimpleWeatherData : WeatherBasicClass
 @property(nonatomic, nonnull, copy) NSString *text;
+@property(nonatomic, assign) NSInteger iconCode;
 @property(nonatomic, assign) NSInteger tempMax;
 @property(nonatomic, assign) NSInteger tempMin;
 -(instancetype _Nonnull) init;
@@ -39,6 +40,7 @@
 @property(nonatomic, nonnull, copy) NSString *cityName;
 @property(nonatomic, nonnull, copy) NSString *updateTime;
 @property(nonatomic, nonnull, copy) NSString *text;
+@property(nonatomic, assign) NSInteger iconCode;
 @property(nonatomic, nonnull, copy) NSString *temp;
 @property(nonatomic, assign) NSInteger humidity;
 @property(nonatomic, assign) NSInteger pressure;

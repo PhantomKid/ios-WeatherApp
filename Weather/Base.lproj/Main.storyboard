@@ -173,23 +173,33 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <searchBar contentMode="redraw" fixedFrame="YES" text="" placeholder="搜索城市(汉字/拼音)" translatesAutoresizingMaskIntoConstraints="NO" id="gSV-8v-FWN" userLabel="citySearchBar" customClass="MySearchBar">
+                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="搜索城市(汉字/拼音)" translatesAutoresizingMaskIntoConstraints="NO" id="jbw-b0-Jmi">
                                 <rect key="frame" x="0.0" y="72" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <textInputTraits key="textInputTraits" textContentType="location"/>
+                                <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="imb-Nk-eVS">
+                                <rect key="frame" x="0.0" y="146" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="自动定位"/>
+                                <connections>
+                                    <action selector="locationButtonClicked:" destination="Nh1-Ni-M8p" eventType="touchUpInside" id="VL8-zU-SzG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7RO-Gb-s98"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="r3Q-VI-pkd"/>
                     <connections>
-                        <outlet property="citySearchBar" destination="gSV-8v-FWN" id="bat-aN-12W"/>
+                        <outlet property="citySearchBar" destination="jbw-b0-Jmi" id="deY-nB-6c9"/>
+                        <outlet property="getCurrentLocationButton" destination="imb-Nk-eVS" id="BXz-ft-xCW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7iJ-ou-1zK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2614" y="1605"/>
+            <point key="canvasLocation" x="-2614.4927536231885" y="1604.4642857142856"/>
         </scene>
         <!--mainViewController-->
         <scene sceneID="rUF-Jd-oVj">

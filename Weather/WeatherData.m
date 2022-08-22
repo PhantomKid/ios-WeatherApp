@@ -63,24 +63,27 @@ static const NSString *key = @"160598640a6f42ebbc584183a10b5a70";
     self = [super init];
     if (self) {
         _text = nil;
+        _iconCode = 0;
         _tempMax = 0;
         _tempMin = 0;
     }
     return self;
 }
 -(NSString *) toString {
-    NSString *str = [[NSString alloc] initWithFormat:@"%@,最高温度为%ld,最低温度为%ld", self.text, self.tempMax, self.tempMin];
+    NSString *str = [[NSString alloc] initWithFormat:@"天气:%@,天气图标代码:%ld,最高温度为%ld,最低温度为%ld", self.text, self.iconCode, self.tempMax, self.tempMin];
     return str;
 }
 -(instancetype) copyWithZone:(NSZone *)zone {
     COPYBEFOREINIT(SimpleWeatherData);
     copy.text = self.text;
+    copy.iconCode = self.iconCode;
     copy.tempMax = self.tempMax;
     copy.tempMin = self.tempMin;
     return self;
 }
 -(void) decodeJsonDictionary:(NSDictionary *)jsonData {
     self.text = jsonData[@"textDay"];
+    self.iconCode = [jsonData[@"iconDay"] intValue];
     self.tempMax = [jsonData[@"tempMax"] intValue];
     self.tempMin = [jsonData[@"tempMin"] intValue];
     [self print];
@@ -93,6 +96,7 @@ static const NSString *key = @"160598640a6f42ebbc584183a10b5a70";
     copy.cityName = self.cityName;
     copy.updateTime = self.updateTime;
     copy.text = self.text;
+    copy.iconCode = self.iconCode;
     copy.temp = self.temp;
     copy.humidity = self.humidity;
     copy.pressure = self.pressure;
@@ -112,6 +116,7 @@ static const NSString *key = @"160598640a6f42ebbc584183a10b5a70";
         _cityName = nil;
         _updateTime = nil;
         _text = nil;
+        _iconCode = 0;
         _temp = nil;
         _humidity = 0;
         _pressure = 0;
@@ -133,7 +138,7 @@ static const NSString *key = @"160598640a6f42ebbc584183a10b5a70";
     return self;
 }
 -(NSString *) toString {
-    NSString *str = [[NSString alloc] initWithFormat:@"数据更新时间:%@, 地点:%@, 天气:%@, 温度:%@, 湿度:%ld, 气压:%ld, 风向:%@, 风力:%ld, 风速:%ld", self.updateTime, self.cityName, self.text, self.temp, self.humidity, self.pressure, self.windDir, self.windScale, self.windSpeed];
+    NSString *str = [[NSString alloc] initWithFormat:@"数据更新时间:%@, 地点:%@, 天气:%@, 天气图标代号:%ld, 温度:%@, 湿度:%ld, 气压:%ld, 风向:%@, 风力:%ld, 风速:%ld", self.updateTime, self.cityName, self.text, self.iconCode, self.temp, self.humidity, self.pressure, self.windDir, self.windScale, self.windSpeed];
     return str;
 }
 -(NSString *) getDate {
@@ -150,6 +155,7 @@ static const NSString *key = @"160598640a6f42ebbc584183a10b5a70";
     id nowPart = jsonDictionary[@"now"];
     if ([nowPart isKindOfClass:[NSDictionary class]] && nowPart != nil) {
         self.text = nowPart[@"text"];
+        self.iconCode = [nowPart[@"icon"] intValue];
         self.temp = nowPart[@"temp"];
         self.humidity = [nowPart[@"humidity"] intValue];
         self.pressure = [nowPart[@"pressure"] intValue];
@@ -161,12 +167,19 @@ static const NSString *key = @"160598640a6f42ebbc584183a10b5a70";
 }
 -(void) decodeJsonDictionaryForIndice:(NSDictionary *)jsonData {
     NSArray *daily = jsonData[@"daily"];
-    NSDictionary *dict0 = [daily objectAtIndex:0];
-    NSDictionary *dict1 = [daily objectAtIndex:1];
-    NSDictionary *dict2 = [daily objectAtIndex:2];
-    [self->_sportIndex decodeJsonDictionary:dict0];
-    [self->_comfortIndex decodeJsonDictionary:dict1];
-    [self->_makeupIndex decodeJsonDictionary:dict2];
+    for (int i = 0; i < daily.count; ++i) {
+        switch (i) {
+            case 0:
+                [self->_sportIndex decodeJsonDictionary:[daily objectAtIndex:i]];
+                break;
+            case 1:
+                [self->_comfortIndex decodeJsonDictionary:[daily objectAtIndex:i]];
+            case 2:
+                [self->_makeupIndex decodeJsonDictionary:[daily objectAtIndex:i]];
+            default:
+                break;
+        }
+    }
 }
 -(void) decodeJsonDictionaryForForcast:(NSDictionary *)jsonData {
     NSArray *daily = jsonData[@"daily"];

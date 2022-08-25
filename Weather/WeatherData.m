@@ -138,7 +138,7 @@ static const NSString *key = @"160598640a6f42ebbc584183a10b5a70";
     return self;
 }
 -(NSString *) toString {
-    NSString *str = [[NSString alloc] initWithFormat:@"数据更新时间:%@, 地点:%@, 天气:%@, 天气图标代号:%ld, 温度:%@, 湿度:%ld, 气压:%ld, 风向:%@, 风力:%ld, 风速:%ld", self.updateTime, self.cityName, self.text, self.iconCode, self.temp, self.humidity, self.pressure, self.windDir, self.windScale, self.windSpeed];
+    NSString *str = [[NSString alloc] initWithFormat:@"数据更新时间:%@, 地点:%@, 天气:%@, 天气图标代号:%ld, 温度:%@, 湿度:%@, 气压:%@, 风向:%@, 风力:%@, 风速:%@", self.updateTime, self.cityName, self.text, self.iconCode, self.temp, self.humidity, self.pressure, self.windDir, self.windScale, self.windSpeed];
     return str;
 }
 -(NSString *) getDate {
@@ -157,11 +157,11 @@ static const NSString *key = @"160598640a6f42ebbc584183a10b5a70";
         self.text = nowPart[@"text"];
         self.iconCode = [nowPart[@"icon"] intValue];
         self.temp = nowPart[@"temp"];
-        self.humidity = [nowPart[@"humidity"] intValue];
-        self.pressure = [nowPart[@"pressure"] intValue];
+        self.humidity = nowPart[@"humidity"];
+        self.pressure = nowPart[@"pressure"];
         self.windDir = nowPart[@"windDir"];
-        self.windSpeed = [nowPart[@"windSpeed"] intValue];
-        self.windScale = [nowPart[@"windScale"] intValue];
+        self.windSpeed = nowPart[@"windSpeed"];
+        self.windScale = nowPart[@"windScale"];
     }
     [self print];
 }
@@ -263,6 +263,8 @@ static const NSString *key = @"160598640a6f42ebbc584183a10b5a70";
     };
     void (^decodeBlock)(NSDictionary *) = ^void(NSDictionary* jsonData) {
         [self decodeJsonDictionary:jsonData];
+        NSNotification *notification = [[NSNotification alloc] initWithName:@"weatherDataDidGet" object:nil userInfo:@{@"key":self}];
+        [[NSNotificationCenter defaultCenter] postNotification:notification];
     };
     [self getDataOnline:url :formatBlock :decodeBlock];
 }
@@ -274,6 +276,8 @@ static const NSString *key = @"160598640a6f42ebbc584183a10b5a70";
     };
     void (^decodeBlock)(NSDictionary *) = ^void(NSDictionary* jsonData) {
         [self decodeJsonDictionaryForIndice:jsonData];
+        NSNotification *notification = [[NSNotification alloc] initWithName:@"weatherIndiceDidGet" object:nil userInfo:@{@"key":self}];
+        [[NSNotificationCenter defaultCenter] postNotification:notification];
     };
     [self getDataOnline:url :formatBlock :decodeBlock];
 }
@@ -286,6 +290,8 @@ static const NSString *key = @"160598640a6f42ebbc584183a10b5a70";
     };
     void (^decodeBlock)(NSDictionary *) = ^void(NSDictionary* jsonData) {
         [self decodeJsonDictionaryForForcast:jsonData];
+        NSNotification *notification = [[NSNotification alloc] initWithName:@"weatherWeekForcastDidGet" object:nil userInfo:@{@"key":self}];
+        [[NSNotificationCenter defaultCenter] postNotification:notification];
     };
     [self getDataOnline:url :formatBlock :decodeBlock];
 }

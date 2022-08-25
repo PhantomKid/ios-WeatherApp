@@ -31,9 +31,6 @@
     [self.weatherData getWeatherDataOnline];
     [self.weatherData getWeatherIndiceOnline];
     [self.weatherData getWeekForcastDataOnline];
-    NSNotification *notification = [[NSNotification alloc] initWithName:@"weatherDataDidGet" object:nil userInfo:@{@"key":cityName}];
-    [[NSNotificationCenter defaultCenter] postNotification:notification];
-    NSLog(@"postNotification");
 }
 
 -(void) locationButtonClicked:(id)sender {

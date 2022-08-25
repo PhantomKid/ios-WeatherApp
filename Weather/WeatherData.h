@@ -42,11 +42,11 @@
 @property(nonatomic, nonnull, copy) NSString *text;
 @property(nonatomic, assign) NSInteger iconCode;
 @property(nonatomic, nonnull, copy) NSString *temp;
-@property(nonatomic, assign) NSInteger humidity;
-@property(nonatomic, assign) NSInteger pressure;
+@property(nonatomic, nonnull, copy) NSString *humidity;
+@property(nonatomic, nonnull, copy) NSString *pressure;
 @property(nonatomic, nonnull, copy) NSString *windDir;
-@property(nonatomic, assign) NSInteger windScale;
-@property(nonatomic, assign) NSInteger windSpeed;
+@property(nonatomic, nonnull, copy) NSString *windScale;
+@property(nonatomic, nonnull, copy) NSString *windSpeed;
 @property(nonatomic, nonnull, copy) WeatherIndex *comfortIndex;
 @property(nonatomic, nonnull, copy) WeatherIndex *sportIndex;
 @property(nonatomic, nonnull, copy) WeatherIndex *makeupIndex;

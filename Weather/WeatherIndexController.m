@@ -6,6 +6,7 @@
 //
 
 #import "WeatherIndexController.h"
+#import "WeatherViewController.h"
 
 @interface WeatherIndexController ()
 
@@ -18,6 +19,14 @@
     // Do any additional setup after loading the view.
     WeatherData *wd = [[WeatherData alloc] init];
     self.weatherData = wd;
+    WeatherViewController *wvc = [self.tabBarController.viewControllers objectAtIndex:0];
+    self.weatherData = wvc.weatherData;
+    NSLog(@"%@", self.weatherData.cityName);
+    if (self.weatherData.cityName != nil) {
+        NSString *cityName = [[NSString alloc] initWithFormat:@"+ %@", self.weatherData.cityName];
+        [self.cityButton setTitle:cityName forState:UIControlStateNormal];
+        [self.cityButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
+    }
 }
 
 /*

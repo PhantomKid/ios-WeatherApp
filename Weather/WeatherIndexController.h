@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WeatherIndexController : UIViewController
 @property (atomic, weak) WeatherData *weatherData;
+@property (weak, nonatomic) IBOutlet UIButton *cityButton;
 @end
 
 NS_ASSUME_NONNULL_END

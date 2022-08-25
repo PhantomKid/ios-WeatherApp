@@ -55,12 +55,10 @@
             CLPlacemark *placemark = [placemarks objectAtIndex:0];
             NSString *cityName = placemark.locality;
             if (cityName == nil) {
-                NSLog(@"3");
                 // 直辖市无法通过locality获取
                 cityName = placemark.administrativeArea;
             }
             if (cityName != nil) {
-                NSLog(@"4");
                 [self cityNameDidGet:cityName];
             }
         }
@@ -72,11 +70,9 @@
 }
 
 -(void) searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-    NSLog(@"1");
     searchBar.showsCancelButton = YES;
 }
 -(void) searchBarTextDidEndEditing:(UISearchBar *)searchBar {
-    NSLog(@"2");
     if ([searchBar.text isEqualToString:@""]) {
         searchBar.showsCancelButton = NO;
     } else {
@@ -85,14 +81,12 @@
     self.prevText = nil;
 }
 -(void) searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    NSLog(@"3");
     searchBar.text = @"";
     searchBar.showsCancelButton = NO;
     [searchBar resignFirstResponder];   //退回键盘
     self.prevText = nil;
 }
 -(void) searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    NSLog(@"4");
     [searchBar resignFirstResponder];
     NSString *currText = searchBar.text;
     if (currText != nil && ![self.prevText isEqualToString:currText]) {

@@ -40,14 +40,13 @@ static const NSString *key = @"160598640a6f42ebbc584183a10b5a70";
     return self;
 }
 -(NSString *) toString {
-    NSString *str = [[NSString alloc] initWithFormat:@"%@:%@,%@", self.name, self.category, self.text];
+    NSString *str = [[NSString alloc] initWithFormat:@"%@:%@\n评价:%@", self.name, self.category, self.text];
     return str;
 }
 -(void) decodeJsonDictionary:(NSDictionary *)jsonData {
     self.name = jsonData[@"name"];
     self.text = jsonData[@"text"];
     self.category = jsonData[@"category"];
-    [self print];
 }
 -(instancetype)copyWithZone:(NSZone *)zone {
     COPYBEFOREINIT(WeatherIndex);
@@ -86,7 +85,6 @@ static const NSString *key = @"160598640a6f42ebbc584183a10b5a70";
     self.iconCode = [jsonData[@"iconDay"] intValue];
     self.tempMax = [jsonData[@"tempMax"] intValue];
     self.tempMin = [jsonData[@"tempMin"] intValue];
-    [self print];
 }
 @end
 
@@ -163,7 +161,6 @@ static const NSString *key = @"160598640a6f42ebbc584183a10b5a70";
         self.windSpeed = nowPart[@"windSpeed"];
         self.windScale = nowPart[@"windScale"];
     }
-    [self print];
 }
 -(void) decodeJsonDictionaryForIndice:(NSDictionary *)jsonData {
     NSArray *daily = jsonData[@"daily"];

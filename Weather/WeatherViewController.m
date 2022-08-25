@@ -21,6 +21,7 @@
     //动态调整城市label的宽度
     UILabel *cityLabel = self.cityButton.titleLabel;
     cityLabel.text = @"+ 选择城市";
+    self.cityButton.frame = CGRectMake(146, 44, 122, 32);
     ADJUST_MID_LABEL_WIDTH(cityLabel);
     
     // 设置updateTime的字体颜色和大小
@@ -49,12 +50,13 @@
     
     // 为6个数据栏设置高度和宽度（利用屏幕高度的黄金分割比作为总高度，用屏幕宽度作为宽度）
     const int cellNum = 6;
-    SET_WIDTH_AND_HEIGHT_TOGETHER_USING_HEIGHT_GOLDEN_SECTION(self.text.frame, y0, cellNum);
-    SET_WIDTH_AND_HEIGHT_TOGETHER_USING_HEIGHT_GOLDEN_SECTION(self.humidity.frame, y0, cellNum);
-    SET_WIDTH_AND_HEIGHT_TOGETHER_USING_HEIGHT_GOLDEN_SECTION(self.pressure.frame, y0, cellNum);
-    SET_WIDTH_AND_HEIGHT_TOGETHER_USING_HEIGHT_GOLDEN_SECTION(self.windDir.frame, y0, cellNum);
-    SET_WIDTH_AND_HEIGHT_TOGETHER_USING_HEIGHT_GOLDEN_SECTION(self.windScale.frame, y0, cellNum);
-    SET_WIDTH_AND_HEIGHT_TOGETHER_USING_HEIGHT_GOLDEN_SECTION(self.windSpeed.frame, y0, cellNum);
+    const CGFloat margin = 6.0;
+    SET_WIDTH_AND_HEIGHT_TOGETHER_USING_HEIGHT_GOLDEN_SECTION(self.text.frame, margin, y0, cellNum);
+    SET_WIDTH_AND_HEIGHT_TOGETHER_USING_HEIGHT_GOLDEN_SECTION(self.humidity.frame, margin, y0, cellNum);
+    SET_WIDTH_AND_HEIGHT_TOGETHER_USING_HEIGHT_GOLDEN_SECTION(_pressure.frame, margin, y0, cellNum);
+    SET_WIDTH_AND_HEIGHT_TOGETHER_USING_HEIGHT_GOLDEN_SECTION(self.windDir.frame,margin, y0, cellNum);
+    SET_WIDTH_AND_HEIGHT_TOGETHER_USING_HEIGHT_GOLDEN_SECTION(self.windScale.frame,margin, y0, cellNum);
+    SET_WIDTH_AND_HEIGHT_TOGETHER_USING_HEIGHT_GOLDEN_SECTION(self.windSpeed.frame,margin, y0, cellNum);
     
     // 生成一个WeatherData对象
     self.weatherData = [[WeatherData alloc] init];
@@ -70,10 +72,9 @@
 }
 
 -(void) loadViewWithWeatherData:(NSNotification *)gotDataNotification {
-    NSLog(@"getNotification");
     NSString *cityName = [[NSString alloc] initWithFormat:@"+ %@", self.weatherData.cityName];
     [self.cityButton setTitle:cityName forState:UIControlStateNormal];
-    ADJUST_RIGHTMOST_LABEL_WIDTH(self.cityButton.titleLabel);
+    ADJUST_MID_LABEL_WIDTH(self.cityButton.titleLabel);
     [self.cityButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
     [self showWeatherData];
 }
@@ -87,27 +88,27 @@
     self.text.imageView.image = [UIImage imageNamed:iconName];
     self.text.imageView.frame = CGRectMake(10.0, 0.0, 20.0, 20.0);
     self.text.textLabel.text = self.weatherData.text;
-    self.text.detailTextLabel.text = self.weatherData.temp;
+    self.text.detailTextLabel.text = [[NSString alloc] initWithFormat:@"%@°C", self.weatherData.temp];
     
     // 湿度栏
-    self.humidity.textLabel.text = @"湿度";
-    self.humidity.detailTextLabel.text = self.weatherData.humidity;
+    self.humidity.textLabel.text = @"相对湿度";
+    self.humidity.detailTextLabel.text = [[NSString alloc] initWithFormat:@"%@%%",self.weatherData.humidity];
     
     // 气压栏
     self.pressure.textLabel.text = @"气压";
-    self.pressure.detailTextLabel.text = self.weatherData.pressure;
+    self.pressure.detailTextLabel.text = [[NSString alloc] initWithFormat:@"%@hPa", self.weatherData.pressure];
     
     // 风向栏
     self.windDir.textLabel.text = @"风向";
     self.windDir.detailTextLabel.text = self.weatherData.windDir;
     
     // 风力栏
-    self.windScale.textLabel.text = @"风力";
+    self.windScale.textLabel.text = @"风力等级";
     self.windScale.detailTextLabel.text = self.weatherData.windScale;
     
     // 风速栏
     self.windSpeed.textLabel.text = @"风速";
-    self.windSpeed.detailTextLabel.text = self.weatherData.windSpeed;
+    self.windSpeed.detailTextLabel.text = [[NSString alloc] initWithFormat:@"%@km/h", self.weatherData.windSpeed];
 }
 
 - (IBAction)selectCity:(id)sender {

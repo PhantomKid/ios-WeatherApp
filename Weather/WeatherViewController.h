@@ -15,15 +15,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property(weak) IBOutlet UIButton *cityButton;
 - (IBAction)selectCity:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableViewCell *updateTime;
-
-
 @property(nonatomic, strong) UITableViewCell *text;
 @property(nonatomic, strong) UITableViewCell *humidity;
 @property(nonatomic, strong) UITableViewCell *pressure;
 @property(nonatomic, strong) UITableViewCell *windDir;
 @property(nonatomic, strong) UITableViewCell *windScale;
 @property(nonatomic, strong) UITableViewCell *windSpeed;
--(void) loadViewWithWeatherData: (NSNotification *) gotDataNotification;
+-(void) loadViewWithWeatherData: (NSNotification *__nullable) gotDataNotification;
 -(void) showWeatherData;
 @end
 

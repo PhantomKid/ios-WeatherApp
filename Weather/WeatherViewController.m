@@ -6,9 +6,7 @@
 //
 
 #import "WeatherViewController.h"
-
-#define SCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)
-#define SCREEN_HEIGHT ([[UIScreen mainScreen] bounds].size.height)
+#import "GlobalVarAndFunc.h"
 
 @interface WeatherViewController ()
 
@@ -19,20 +17,33 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+
     
     //动态调整城市label的宽度
     UILabel *cityLabel = self.cityButton.titleLabel;
-    cityLabel.textAlignment = NSTextAlignmentCenter;
     cityLabel.text = @"+ 选择城市";
-    CGSize size = [cityLabel.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:cityLabel.font, NSFontAttributeName, nil]];
+    ADJUST_MID_LABEL_WIDTH(cityLabel);
+    /*CGSize size = [cityLabel.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:cityLabel.font, NSFontAttributeName, nil]];
     CGFloat width = size.width;
-    cityLabel.frame = CGRectMake(0.5*(SCREEN_WIDTH-width), cityLabel.frame.origin.y, width, cityLabel.frame.size.height);
+    cityLabel.frame = CGRectMake(0.5*(SCREEN_WIDTH-width), cityLabel.frame.origin.y, width, cityLabel.frame.size.height);*/
+    
+    // 设置updateTime的字体颜色和大小
+    [self.updateTime.textLabel setTextColor:[UIColor grayColor]];
+    [self.updateTime.textLabel setFont:[UIFont systemFontOfSize:14.0]];
     
     // 修改天气栏使其宽度为当前设备宽度
-    self.text.frame = CGRectMake(self.text.frame.origin.x, self.text.frame.origin.y, SCREEN_WIDTH, self.text.frame.size.height);
+    SET_WIDTH_AS_SCREEN_WIDTH(self.text.frame);
     
     // 修改天气栏内的温度label位置为天气栏的最右侧
-    self.temp.frame = CGRectMake(SCREEN_WIDTH-self.temp.frame.size.width, self.temp.frame.origin.y, self.temp.frame.size.width, self.temp.frame.size.height);
+    SET_VALUE_AS_THE_RIGHTMOST_OF_CELL(self.temp.frame);
+    
+    // 修改湿度栏使其宽度为当前设备宽度，湿度值label置于cell的最右侧
+    SET_WIDTH_AS_SCREEN_WIDTH(self.humidity.frame);
+    SET_VALUE_AS_THE_RIGHTMOST_OF_CELL(self.humidityValue.frame);
+    
+    // 修改气压栏使其宽度为当前设备宽度，气压值label置于cell的最右侧
+    SET_WIDTH_AS_SCREEN_WIDTH(self.pressure.frame);
+    SET_VALUE_AS_THE_RIGHTMOST_OF_CELL(self.pressureValue.frame);
     
     self.weatherData = [[WeatherData alloc] init];
     
@@ -50,17 +61,32 @@
     NSLog(@"getNotification");
     NSString *cityName = [[NSString alloc] initWithFormat:@"+ %@", self.weatherData.cityName];
     [self.cityButton setTitle:cityName forState:UIControlStateNormal];
+    ADJUST_RIGHTMOST_LABEL_WIDTH(self.cityButton.titleLabel);
     [self.cityButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
     [self showWeatherData];
 }
 
 -(void) showWeatherData {
+    // 更新时间
     self.updateTime.textLabel.text = [[NSString alloc] initWithFormat:@"数据更新于%@", self.weatherData.updateTime];
+    
+    // 天气栏（天气图标+内容+温度）
     NSString *iconName = [[NSString alloc] initWithFormat:@"%ld", (long)self.weatherData.iconCode];
     self.text.imageView.image = [UIImage imageNamed:iconName];
     self.text.imageView.frame = CGRectMake(10.0, 0.0, 20.0, 20.0);
     self.text.textLabel.text = self.weatherData.text;
     self.temp.text = self.weatherData.temp;
+    ADJUST_RIGHTMOST_LABEL_WIDTH(self.temp);
+    
+    // 湿度栏
+    self.humidity.textLabel.text = @"湿度";
+    self.humidityValue.text = self.weatherData.humidity;
+    ADJUST_RIGHTMOST_LABEL_WIDTH(self.humidityValue);
+    
+    // 气压栏
+    self.pressure.textLabel.text = @"气压";
+    self.pressureValue.text = [[NSString alloc] initWithFormat:@"%@kPa", self.weatherData.pressure];
+    ADJUST_RIGHTMOST_LABEL_WIDTH(self.pressureValue);
 }
 
 - (IBAction)selectCity:(id)sender {

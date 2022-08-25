@@ -74,15 +74,15 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" systemColor="systemGray4Color"/>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" translatesAutoresizingMaskIntoConstraints="NO" id="uL6-AT-aiV" userLabel="text">
-                                <rect key="frame" x="0.0" y="178" width="390" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="67" translatesAutoresizingMaskIntoConstraints="NO" id="uL6-AT-aiV" userLabel="text">
+                                <rect key="frame" x="0.0" y="163" width="390" height="67"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uL6-AT-aiV" id="7Wl-fx-KJi">
-                                    <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="67"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Y9-Fc-i7P" userLabel="temp">
-                                            <rect key="frame" x="332" y="0.0" width="58" height="44"/>
+                                            <rect key="frame" x="332" y="0.0" width="58" height="67"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -90,6 +90,40 @@
                                         </label>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="51" translatesAutoresizingMaskIntoConstraints="NO" id="PS3-az-VD3" userLabel="humidity">
+                                <rect key="frame" x="0.0" y="272" width="390" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PS3-az-VD3" id="O9b-4U-ybu">
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FnD-ai-rFK" userLabel="humidityValue">
+                                            <rect key="frame" x="332" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" translatesAutoresizingMaskIntoConstraints="NO" id="7gL-kZ-mx3" userLabel="pressure">
+                                <rect key="frame" x="0.0" y="357" width="390" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7gL-kZ-mx3" id="ru8-9W-TZv">
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K6S-dR-KsK" userLabel="pressureValue">
+                                            <rect key="frame" x="332" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </subviews>
@@ -100,6 +134,10 @@
                     <navigationItem key="navigationItem" id="T2G-yp-xQb"/>
                     <connections>
                         <outlet property="cityButton" destination="UJ9-Ii-LPF" id="l4Z-LQ-3Ax"/>
+                        <outlet property="humidity" destination="PS3-az-VD3" id="O0u-uy-FMw"/>
+                        <outlet property="humidityValue" destination="FnD-ai-rFK" id="NU7-Ky-gCj"/>
+                        <outlet property="pressure" destination="7gL-kZ-mx3" id="pUX-Zy-0vD"/>
+                        <outlet property="pressureValue" destination="K6S-dR-KsK" id="4cq-vW-H2C"/>
                         <outlet property="temp" destination="8Y9-Fc-i7P" id="D0b-nL-nbc"/>
                         <outlet property="text" destination="uL6-AT-aiV" id="Nfu-ic-vWO"/>
                         <outlet property="updateTime" destination="A0h-1i-zGt" id="6Gz-oZ-L7M"/>

@@ -17,6 +17,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UITableViewCell *updateTime;
 @property (weak, nonatomic) IBOutlet UITableViewCell *text;
 @property (weak, nonatomic) IBOutlet UILabel *temp;
+@property (weak, nonatomic) IBOutlet UITableViewCell *humidity;
+@property (weak, nonatomic) IBOutlet UILabel *humidityValue;
+@property (weak, nonatomic) IBOutlet UITableViewCell *pressure;
+@property (weak, nonatomic) IBOutlet UILabel *pressureValue;
 -(void) loadViewWithWeatherData: (NSNotification *) gotDataNotification;
 -(void) showWeatherData;
 @end

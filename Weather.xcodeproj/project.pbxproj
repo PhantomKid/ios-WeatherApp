@@ -63,6 +63,7 @@
 		8E6ABE8E28B368A900132A4C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8E6ABE8F28B368C200132A4C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/Main.storyboard"; sourceTree = "<group>"; };
 		8E6ABE9028B368C200132A4C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.storyboard"; sourceTree = "<group>"; };
+		8E90A6F628B729AF002E1443 /* GlobalVarAndFunc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalVarAndFunc.h; sourceTree = "<group>"; };
 		8EB5BD8E28B1D05400E3BFAA /* WeatherViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherViewController.h; sourceTree = "<group>"; };
 		8EB5BD8F28B1D05400E3BFAA /* WeatherViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherViewController.m; sourceTree = "<group>"; };
 		8EB5BD9128B2133100E3BFAA /* PlaceSelectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaceSelectionViewController.h; sourceTree = "<group>"; };
@@ -145,6 +146,7 @@
 				8EB5BD9228B2133100E3BFAA /* PlaceSelectionViewController.m */,
 				8EB5BD8E28B1D05400E3BFAA /* WeatherViewController.h */,
 				8EB5BD8F28B1D05400E3BFAA /* WeatherViewController.m */,
+				8E90A6F628B729AF002E1443 /* GlobalVarAndFunc.h */,
 				8E66157128AA5C9E001D3D19 /* Assets.xcassets */,
 				8E66157328AA5C9E001D3D19 /* LaunchScreen.storyboard */,
 				8E66157628AA5C9E001D3D19 /* Info.plist */,

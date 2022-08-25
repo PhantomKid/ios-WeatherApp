@@ -10,17 +10,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WeatherViewController : UIViewController 
+@interface WeatherViewController : UIViewController
 @property(nonatomic, strong) WeatherData *weatherData;
 @property(weak) IBOutlet UIButton *cityButton;
 - (IBAction)selectCity:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableViewCell *updateTime;
-@property (weak, nonatomic) IBOutlet UITableViewCell *text;
-@property (weak, nonatomic) IBOutlet UILabel *temp;
-@property (weak, nonatomic) IBOutlet UITableViewCell *humidity;
-@property (weak, nonatomic) IBOutlet UILabel *humidityValue;
-@property (weak, nonatomic) IBOutlet UITableViewCell *pressure;
-@property (weak, nonatomic) IBOutlet UILabel *pressureValue;
+
+
+@property(nonatomic, strong) UITableViewCell *text;
+@property(nonatomic, strong) UITableViewCell *humidity;
+@property(nonatomic, strong) UITableViewCell *pressure;
+@property(nonatomic, strong) UITableViewCell *windDir;
+@property(nonatomic, strong) UITableViewCell *windScale;
+@property(nonatomic, strong) UITableViewCell *windSpeed;
 -(void) loadViewWithWeatherData: (NSNotification *) gotDataNotification;
 -(void) showWeatherData;
 @end

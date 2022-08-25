@@ -18,33 +18,45 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
-    
     //动态调整城市label的宽度
     UILabel *cityLabel = self.cityButton.titleLabel;
     cityLabel.text = @"+ 选择城市";
     ADJUST_MID_LABEL_WIDTH(cityLabel);
-    /*CGSize size = [cityLabel.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:cityLabel.font, NSFontAttributeName, nil]];
-    CGFloat width = size.width;
-    cityLabel.frame = CGRectMake(0.5*(SCREEN_WIDTH-width), cityLabel.frame.origin.y, width, cityLabel.frame.size.height);*/
     
     // 设置updateTime的字体颜色和大小
     [self.updateTime.textLabel setTextColor:[UIColor grayColor]];
     [self.updateTime.textLabel setFont:[UIFont systemFontOfSize:14.0]];
     
-    // 修改天气栏使其宽度为当前设备宽度
-    SET_WIDTH_AS_SCREEN_WIDTH(self.text.frame);
+    // 初始化6个数据栏
+    const CGFloat fontSize = 17.0;
+    INIT_CELL(self.text, fontSize);
+    INIT_CELL(self.humidity, fontSize);
+    INIT_CELL(self.pressure, fontSize);
+    INIT_CELL(self.windDir, fontSize);
+    INIT_CELL(self.windScale, fontSize);
+    INIT_CELL(self.windSpeed, fontSize);
     
-    // 修改天气栏内的温度label位置为天气栏的最右侧
-    SET_VALUE_AS_THE_RIGHTMOST_OF_CELL(self.temp.frame);
+    // 将6个cells添加到self.view上使之能够呈现
+    [self.view addSubview:self.text];
+    [self.view addSubview:self.humidity];
+    [self.view addSubview:self.pressure];
+    [self.view addSubview:self.windDir];
+    [self.view addSubview:self.windScale];
+    [self.view addSubview:self.windSpeed];
     
-    // 修改湿度栏使其宽度为当前设备宽度，湿度值label置于cell的最右侧
-    SET_WIDTH_AS_SCREEN_WIDTH(self.humidity.frame);
-    SET_VALUE_AS_THE_RIGHTMOST_OF_CELL(self.humidityValue.frame);
+    // 获取6个数据栏的起始y值
+    CGFloat y0 = self.updateTime.frame.origin.y + self.updateTime.frame.size.height;
     
-    // 修改气压栏使其宽度为当前设备宽度，气压值label置于cell的最右侧
-    SET_WIDTH_AS_SCREEN_WIDTH(self.pressure.frame);
-    SET_VALUE_AS_THE_RIGHTMOST_OF_CELL(self.pressureValue.frame);
+    // 为6个数据栏设置高度和宽度（利用屏幕高度的黄金分割比作为总高度，用屏幕宽度作为宽度）
+    const int cellNum = 6;
+    SET_WIDTH_AND_HEIGHT_TOGETHER_USING_HEIGHT_GOLDEN_SECTION(self.text.frame, y0, cellNum);
+    SET_WIDTH_AND_HEIGHT_TOGETHER_USING_HEIGHT_GOLDEN_SECTION(self.humidity.frame, y0, cellNum);
+    SET_WIDTH_AND_HEIGHT_TOGETHER_USING_HEIGHT_GOLDEN_SECTION(self.pressure.frame, y0, cellNum);
+    SET_WIDTH_AND_HEIGHT_TOGETHER_USING_HEIGHT_GOLDEN_SECTION(self.windDir.frame, y0, cellNum);
+    SET_WIDTH_AND_HEIGHT_TOGETHER_USING_HEIGHT_GOLDEN_SECTION(self.windScale.frame, y0, cellNum);
+    SET_WIDTH_AND_HEIGHT_TOGETHER_USING_HEIGHT_GOLDEN_SECTION(self.windSpeed.frame, y0, cellNum);
     
+    // 生成一个WeatherData对象
     self.weatherData = [[WeatherData alloc] init];
     
     // 注册观察者，用以接收weatherDataDidGet消息，接收到该信息后调用loadViewWithWeatherData函数从而展示天气信息
@@ -75,18 +87,27 @@
     self.text.imageView.image = [UIImage imageNamed:iconName];
     self.text.imageView.frame = CGRectMake(10.0, 0.0, 20.0, 20.0);
     self.text.textLabel.text = self.weatherData.text;
-    self.temp.text = self.weatherData.temp;
-    ADJUST_RIGHTMOST_LABEL_WIDTH(self.temp);
+    self.text.detailTextLabel.text = self.weatherData.temp;
     
     // 湿度栏
     self.humidity.textLabel.text = @"湿度";
-    self.humidityValue.text = self.weatherData.humidity;
-    ADJUST_RIGHTMOST_LABEL_WIDTH(self.humidityValue);
+    self.humidity.detailTextLabel.text = self.weatherData.humidity;
     
     // 气压栏
     self.pressure.textLabel.text = @"气压";
-    self.pressureValue.text = [[NSString alloc] initWithFormat:@"%@kPa", self.weatherData.pressure];
-    ADJUST_RIGHTMOST_LABEL_WIDTH(self.pressureValue);
+    self.pressure.detailTextLabel.text = self.weatherData.pressure;
+    
+    // 风向栏
+    self.windDir.textLabel.text = @"风向";
+    self.windDir.detailTextLabel.text = self.weatherData.windDir;
+    
+    // 风力栏
+    self.windScale.textLabel.text = @"风力";
+    self.windScale.detailTextLabel.text = self.weatherData.windScale;
+    
+    // 风速栏
+    self.windSpeed.textLabel.text = @"风速";
+    self.windSpeed.detailTextLabel.text = self.weatherData.windSpeed;
 }
 
 - (IBAction)selectCity:(id)sender {

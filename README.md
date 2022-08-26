@@ -33,6 +33,8 @@
             |—— WeatherViewController.m
             |—— WeatherIndexController.h
             |—— WeatherIndexController.m
+            |—— ForcastViewController.h
+            |—— ForcastViewController.m
             |—— PlaceSelectionViewController.h
             |—— PlaceSelectionViewController.m
             |—— Weather.xcdatamodeld
@@ -50,7 +52,8 @@
 4. WeatherData: 自定义的天气数据类，包含各种数据和网络请求方法
 5. WeatherViewController: 实时天气数据展示界面类
 6. WeatherIndexController: 天气指数数据展示界面类
-7. PlaceSelectionViewController: 近期天气预报展示界面类
+7. ForcastViewController: 近期天气预报展示界面类
+8. PlaceSelectionViewController: 近期天气预报展示界面类
 
     
 

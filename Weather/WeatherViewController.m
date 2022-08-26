@@ -6,6 +6,8 @@
 //
 
 #import "WeatherViewController.h"
+#import "WeatherIndexController.h"
+#import "ForcastViewController.h"
 #import "GlobalVarAndFunc.h"
 
 @interface WeatherViewController ()
@@ -61,13 +63,25 @@
     // 生成一个WeatherData对象
     self.weatherData = [[WeatherData alloc] init];
     
-    // 注册观察者，用以接收weatherDataDidGet消息，接收到该信息后调用loadViewWithWeatherData函数从而展示天气信息
+    // 为三个UI界面注册observer
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    WeatherIndexController *wic = [self.tabBarController.viewControllers objectAtIndex:1];
+    ForcastViewController *fvc = [self.tabBarController.viewControllers objectAtIndex:2];
     [center addObserver:self selector:@selector(loadViewWithWeatherData:) name:@"weatherDataDidGet" object:nil];
-    
-    if (self.weatherData.cityName != nil) {
-        [self loadViewWithWeatherData:nil];
+    [center addObserver:wic selector:@selector(loadViewWithWeatherIndiceData:) name:@"weatherIndiceDidGet" object:nil];
+    [center addObserver:fvc selector:@selector(loadViewWithWeatherForcastData:) name:@"weatherForcastDidGet" object:nil];
+}
+
+-(void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    // 未获得具体城市直接返回
+    if (self.weatherData.cityName == nil) return;
+    // 界面无需刷新直接返回(self.weather.cityName与cityButton的城市是一样的，但是cityButton的字符串前多了"+ ")
+    NSString *str = [[NSString alloc] initWithFormat:@"+ %@", self.weatherData.cityName];
+    if (self.weatherData.cityName != nil && self.cityButton.titleLabel.text != nil && [str isEqualToString: self.cityButton.titleLabel.text]) {
+        return;
     }
+    [self loadViewWithWeatherData:nil];
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
@@ -75,7 +89,13 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"weatherDataDidGet" object:nil];
 }
 
--(void) loadViewWithWeatherData:(NSNotification *)gotDataNotification {
+-(void) loadViewWithWeatherData:(NSNotification *)notification {
+    if (notification != nil) {
+        NSLog(@"getWeatherData");
+        WeatherData *getData = notification.userInfo[@"key"];
+        self.weatherData = getData;
+    }
+
     NSString *cityName = [[NSString alloc] initWithFormat:@"+ %@", self.weatherData.cityName];
     [self.cityButton setTitle:cityName forState:UIControlStateNormal];
     ADJUST_MID_LABEL_WIDTH(self.cityButton.titleLabel);

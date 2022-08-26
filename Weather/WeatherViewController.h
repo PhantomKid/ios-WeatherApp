@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) UITableViewCell *windDir;
 @property(nonatomic, strong) UITableViewCell *windScale;
 @property(nonatomic, strong) UITableViewCell *windSpeed;
--(void) loadViewWithWeatherData: (NSNotification *__nullable) gotDataNotification;
+-(void) loadViewWithWeatherData: (NSNotification *__nullable) notification;
 -(void) showWeatherData;
 @end
 

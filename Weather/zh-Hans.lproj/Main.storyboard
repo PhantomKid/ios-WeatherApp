@@ -17,12 +17,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EZZ-GJ-LOK" userLabel="cityButton">
-                                <rect key="frame" x="163" y="44" width="65" height="29"/>
+                                <rect key="frame" x="138" y="36" width="105" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="+ 选择城市"/>
                                 <connections>
-                                    <segue destination="Nh1-Ni-M8p" kind="show" id="Y6s-mf-n8G"/>
+                                    <segue destination="Nh1-Ni-M8p" kind="show" id="HvE-Xu-VwX"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -157,7 +157,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7iJ-ou-1zK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1569" y="1650"/>
+            <point key="canvasLocation" x="-1568" y="1639"/>
         </scene>
         <!--mainViewController-->
         <scene sceneID="rUF-Jd-oVj">
@@ -180,7 +180,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Y6s-mf-n8G"/>
+        <segue reference="q5e-xC-I4l"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">

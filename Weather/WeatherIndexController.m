@@ -7,6 +7,7 @@
 
 #import "WeatherIndexController.h"
 #import "WeatherViewController.h"
+#import "ForcastViewController.h"
 #import "GlobalVarAndFunc.h"
 
 @interface WeatherIndexController ()
@@ -19,7 +20,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    // 将本类的weatherData变量与WeatherViewController中的weatherData关联起（享有同一数据）
+    // 用WeatherViewController中的weatherData给本类的weatherData初始化
     WeatherViewController *wvc = [self.tabBarController.viewControllers objectAtIndex:0];
     self.weatherData = wvc.weatherData;
         
@@ -60,15 +61,18 @@
     SET_WIDTH_AND_HEIGHT_TOGETHER_WITH_OVERALL_HEIGHT_PERCENTAGE(self.comfortIndex.frame, margin, y0, cellNum, heightPercentage);
     SET_WIDTH_AND_HEIGHT_TOGETHER_WITH_OVERALL_HEIGHT_PERCENTAGE(self.sportIndex.frame, margin, y0, cellNum, heightPercentage);
     SET_WIDTH_AND_HEIGHT_TOGETHER_WITH_OVERALL_HEIGHT_PERCENTAGE(self.makeupIndex.frame, margin, y0, cellNum, heightPercentage);
-    
-    // 注册观察者，用以接收weatherIndiceDidGet消息，接收到该信息后调用loadViewWithWeatherIndiceData函数从而展示天气信息
-    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    [center addObserver:self selector:@selector(loadViewWithWeatherIndiceData:) name:@"weatherIndiceDidGet" object:nil];
-    
-    if (self.weatherData.cityName != nil) {
-        [self loadViewWithWeatherIndiceData:nil];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    // 未获得具体城市直接返回
+    if (self.weatherData.cityName == nil) return;
+    // 界面无需刷新直接返回(self.weather.cityName与cityButton的城市是一样的，但是cityButton的字符串前多了"+ ")
+    NSString *str = [[NSString alloc] initWithFormat:@"+ %@", self.weatherData.cityName];
+    if (self.weatherData.cityName != nil && self.cityButton.titleLabel.text != nil && [str isEqualToString: self.cityButton.titleLabel.text]) {
         return;
     }
+    [self loadViewWithWeatherIndiceData:nil];
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
@@ -76,7 +80,12 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"weatherIndiceDidGet" object:nil];
 }
 
--(void) loadViewWithWeatherIndiceData:(NSNotification *)gotDataNotification {
+-(void) loadViewWithWeatherIndiceData:(NSNotification *)notification {
+    if (notification != nil) {
+        NSLog(@"getIndice");
+        WeatherData *getData = notification.userInfo[@"key"];
+        self.weatherData = getData;
+    }
     NSString *cityName = [[NSString alloc] initWithFormat:@"+ %@", self.weatherData.cityName];
     [self.cityButton setTitle:cityName forState:UIControlStateNormal];
     ADJUST_MID_LABEL_WIDTH(self.cityButton.titleLabel);

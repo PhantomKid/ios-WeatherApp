@@ -7,6 +7,7 @@
 
 #import "ForcastViewController.h"
 #import "WeatherViewController.h"
+#import "WeatherIndexController.h"
 #import "GlobalVarAndFunc.h"
 
 @implementation DayForCastView
@@ -16,15 +17,15 @@
         //  初始化4个控件并分配空间
         const CGFloat y = self.frame.origin.y;
         const CGFloat x = frame.origin.x;
-        const CGFloat height = frame.size.height / 4;
+        const CGFloat height = frame.size.height / 6;
         const CGFloat width = frame.size.width;
-        self.date = [[UILabel alloc] initWithFrame:CGRectMake(x, y, width, height)];
+        self.date = [[UILabel alloc] initWithFrame:CGRectMake(x, y, width, 1*height)];
         self.dayCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
-        self.dayCell.frame = CGRectMake(x, y+height, width, height);
+        self.dayCell.frame = CGRectMake(x, y+height, width, 2*height);
         self.nightCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
-        self.nightCell.frame = CGRectMake(x, y+2*height, width, height);
+        self.nightCell.frame = CGRectMake(x, y+3*height, width, 2*height);
         self.tempRangeCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-        self.tempRangeCell.frame = CGRectMake(x, y+3*height, width, height);
+        self.tempRangeCell.frame = CGRectMake(x, y+5*height, width, 1*height);
         
         // 设置字体大小与颜色
         self.date.font = [UIFont systemFontOfSize:14.0];
@@ -79,7 +80,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    // 将本类的weatherData变量与WeatherViewController中的weatherData关联起（享有同一数据）
+    // 用WeatherViewController中的weatherData给本类的weatherData初始化
     WeatherViewController *wvc = [self.tabBarController.viewControllers objectAtIndex:0];
     self.weatherData = wvc.weatherData;
     
@@ -90,15 +91,15 @@
     ADJUST_MID_LABEL_WIDTH(cityLabel);
     
     // 为三天的天气预报数据初始化并设置位置
-    const int sectionNum = 4;
+    const int sectionNum = 3;
     const CGFloat margin = 10.0;
     const CGFloat heightPercentage = 0.618;
     const CGFloat height = heightPercentage*SCREEN_HEIGHT/sectionNum;
     const CGFloat width = SCREEN_WIDTH-margin;
-    const CGFloat y0 = 44; // self.cityButton.frame.origin.y + self.cityButton.frame.size.height
+    const CGFloat y0 = 44+32; //
     CGRect viewRange0 = CGRectMake(margin, y0, width, height);
-    CGRect viewRange1 = CGRectMake(margin, y0+height, width, height);
-    CGRect viewRange2 = CGRectMake(margin, y0+2*height, width, height);
+    CGRect viewRange1 = CGRectMake(margin, y0+0.6*height, width, height);
+    CGRect viewRange2 = CGRectMake(margin, y0+1.2*height, width, height);
     
     self.day0 = [[DayForCastView alloc] initWithFrame:viewRange0];
     self.day1 = [[DayForCastView alloc] initWithFrame:viewRange1];
@@ -109,14 +110,17 @@
     [self.view addSubview: self.day1];
     [self.view addSubview: self.day2];
     
-    // 注册观察者，用以接收weatherIndiceDidGet消息，接收到该信息后调用loadViewWithWeatherIndiceData函数从而展示天气信息
-    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    [center addObserver:self selector:@selector(loadViewWithWeatherForcastData:) name:@"weatherForcastDidGet" object:nil];
-    
-    if (self.weatherData.cityName != nil) {
-        [self loadViewWithWeatherForcastData:nil];
+}
+-(void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    // 未获得具体城市直接返回
+    if (self.weatherData.cityName == nil) return;
+    // 界面无需刷新直接返回(self.weather.cityName与cityButton的城市是一样的，但是cityButton的字符串前多了"+ ")
+    NSString *str = [[NSString alloc] initWithFormat:@"+ %@", self.weatherData.cityName];
+    if (self.weatherData.cityName != nil && self.cityButton.titleLabel.text != nil && [str isEqualToString: self.cityButton.titleLabel.text]) {
         return;
     }
+    [self loadViewWithWeatherForcastData:nil];
 }
 
 -(void) viewDidDisappear:(BOOL)animated {
@@ -125,6 +129,11 @@
 }
 
 -(void) loadViewWithWeatherForcastData:(NSNotification *)notification {
+    if (notification != nil) {
+        NSLog(@"getForcast");
+        WeatherData *getData = notification.userInfo[@"key"];
+        self.weatherData = getData;
+    }
     NSString *cityName = [[NSString alloc] initWithFormat:@"+ %@", self.weatherData.cityName];
     [self.cityButton setTitle:cityName forState:UIControlStateNormal];
     ADJUST_MID_LABEL_WIDTH(self.cityButton.titleLabel);

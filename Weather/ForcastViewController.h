@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface ForcastViewController : UIViewController
-@property(atomic, weak) WeatherData *weatherData;
+@property(atomic, strong) WeatherData *weatherData;
 @property (weak, nonatomic) IBOutlet UIButton *cityButton;
 @property(nonatomic, strong) DayForCastView *day0;
 @property(nonatomic, strong) DayForCastView *day1;

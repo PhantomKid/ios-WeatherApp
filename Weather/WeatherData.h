@@ -29,8 +29,17 @@
 @end
 
 @interface SimpleWeatherData : WeatherBasicClass
-@property(nonatomic, nonnull, copy) NSString *text;
-@property(nonatomic, assign) NSInteger iconCode;
+@property(nonatomic, nonnull, copy) NSString *date;
+@property(nonatomic, nonnull, copy) NSString *textDay;
+@property(nonatomic, nonnull, copy) NSString *textNight;
+@property(nonatomic, nonnull, copy) NSString *windDirDay;
+@property(nonatomic, nonnull, copy) NSString *windDirNight;
+@property(nonatomic, nonnull, copy) NSString *windScaleDay;
+@property(nonatomic, nonnull, copy) NSString *windScaleNight;
+@property(nonatomic, nonnull, copy) NSString *windSpeedDay;
+@property(nonatomic, nonnull, copy) NSString *windSpeedNight;
+@property(nonatomic, assign) NSInteger iconCodeDay;
+@property(nonatomic, assign) NSInteger iconCodeNight;
 @property(nonatomic, assign) NSInteger tempMax;
 @property(nonatomic, assign) NSInteger tempMin;
 -(instancetype _Nonnull) init;
@@ -64,11 +73,6 @@
 
 @interface WeatherData()
 -(void) getDataOnline:(NSString *_Nonnull)url :(NSString *_Nonnull(^_Nonnull)(NSString *_Nonnull, NSString *_Nonnull))formatBlock :(void (^_Nonnull)(NSDictionary * _Nonnull))decodeBlock;
-@end
-
-@interface UIViewControllerWithWeatherData : UIViewController
-@property(weak) WeatherData *weatherData;
--(instancetype) init;
 @end
 
 #endif /* WeatherData_h */

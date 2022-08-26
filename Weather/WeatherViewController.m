@@ -38,12 +38,12 @@
     INIT_CELL(self.windSpeed, fontSize);
     
     // 将6个cells添加到self.view上使之能够呈现
-    [self.view addSubview:self.text];
-    [self.view addSubview:self.humidity];
-    [self.view addSubview:self.pressure];
-    [self.view addSubview:self.windDir];
-    [self.view addSubview:self.windScale];
-    [self.view addSubview:self.windSpeed];
+    [self.view addSubview: self.text];
+    [self.view addSubview: self.humidity];
+    [self.view addSubview: self.pressure];
+    [self.view addSubview: self.windDir];
+    [self.view addSubview: self.windScale];
+    [self.view addSubview: self.windSpeed];
     
     // 获取6个数据栏的起始y值
     CGFloat y0 = self.updateTime.frame.origin.y + self.updateTime.frame.size.height;
@@ -64,6 +64,10 @@
     // 注册观察者，用以接收weatherDataDidGet消息，接收到该信息后调用loadViewWithWeatherData函数从而展示天气信息
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(loadViewWithWeatherData:) name:@"weatherDataDidGet" object:nil];
+    
+    if (self.weatherData.cityName != nil) {
+        [self loadViewWithWeatherData:nil];
+    }
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
@@ -120,11 +124,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    NSLog(@"segue");
+    
     UIViewController *destVC = [segue destinationViewController];
-    /*if ([destVC respondsToSelector:@selector(setDelegate:)]) {
-        [destVC setValue:self forKey:@"delegate"];
-    }*/
     if ([destVC respondsToSelector:@selector(setWeatherData:)]) {
         [destVC setValue:_weatherData forKey:@"weatherData"];
     }

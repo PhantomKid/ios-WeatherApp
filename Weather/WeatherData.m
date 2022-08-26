@@ -9,6 +9,7 @@
 #import "WeatherData.h"
 
 #define COPYBEFOREINIT(TYPE) TYPE *copy = [[TYPE allocWithZone:zone] init];
+#define COPYPROPERTY(property) copy.property = self.property
 
 static const NSString *key = @"160598640a6f42ebbc584183a10b5a70";
 
@@ -26,7 +27,6 @@ static const NSString *key = @"160598640a6f42ebbc584183a10b5a70";
     COPYBEFOREINIT(WeatherBasicClass);
     return copy;
 }
-
 @end
 
 @implementation WeatherIndex
@@ -50,9 +50,9 @@ static const NSString *key = @"160598640a6f42ebbc584183a10b5a70";
 }
 -(instancetype)copyWithZone:(NSZone *)zone {
     COPYBEFOREINIT(WeatherIndex);
-    copy.name = self.name;
-    copy.text = self.text;
-    copy.category = self.category;
+    COPYPROPERTY(name);
+    COPYPROPERTY(text);
+    COPYPROPERTY(category);
     return copy;
 }
 @end
@@ -61,28 +61,55 @@ static const NSString *key = @"160598640a6f42ebbc584183a10b5a70";
 -(instancetype) init {
     self = [super init];
     if (self) {
-        _text = nil;
-        _iconCode = 0;
+        _date = nil;
+        _textDay = nil;
+        _textNight = nil;
+        _windDirDay = nil;
+        _windDirNight = nil;
+        _windScaleDay = nil;
+        _windScaleNight = nil;
+        _windSpeedDay = nil;
+        _windSpeedNight = nil;
+        _iconCodeDay = 0;
+        _iconCodeNight = 0;
         _tempMax = 0;
         _tempMin = 0;
     }
     return self;
 }
 -(NSString *) toString {
-    NSString *str = [[NSString alloc] initWithFormat:@"天气:%@,天气图标代码:%ld,最高温度为%ld,最低温度为%ld", self.text, self.iconCode, self.tempMax, self.tempMin];
+    NSString *str = [[NSString alloc] initWithFormat:@"日期:%@\n白天:%@,天气图标代码:%ld,%@,风力%@级,风速%@km/h\n夜晚:%@,天气图标代码:%ld,%@,风力%@级,风速%@km/h\n一天最高温度为%ld,最低温度为%ld",self.date, self.textDay, self.iconCodeDay, self.windDirDay, self.windScaleDay, self.windSpeedDay, self.textNight, self.iconCodeNight, self.windDirNight, self.windScaleNight, self.windSpeedNight, self.tempMax, self.tempMin];
     return str;
 }
 -(instancetype) copyWithZone:(NSZone *)zone {
     COPYBEFOREINIT(SimpleWeatherData);
-    copy.text = self.text;
-    copy.iconCode = self.iconCode;
-    copy.tempMax = self.tempMax;
-    copy.tempMin = self.tempMin;
+    COPYPROPERTY(date);
+    COPYPROPERTY(textDay);
+    COPYPROPERTY(textNight);
+    COPYPROPERTY(iconCodeDay);
+    COPYPROPERTY(iconCodeNight);
+    COPYPROPERTY(windDirDay);
+    COPYPROPERTY(windDirNight);
+    COPYPROPERTY(windScaleDay);
+    COPYPROPERTY(windScaleNight);
+    COPYPROPERTY(windSpeedDay);
+    COPYPROPERTY(windScaleNight);
+    COPYPROPERTY(tempMax);
+    COPYPROPERTY(tempMin);
     return self;
 }
 -(void) decodeJsonDictionary:(NSDictionary *)jsonData {
-    self.text = jsonData[@"textDay"];
-    self.iconCode = [jsonData[@"iconDay"] intValue];
+    self.date = jsonData[@"fxDate"];
+    self.textDay = jsonData[@"textDay"];
+    self.textNight = jsonData[@"textNight"];
+    self.iconCodeDay = [jsonData[@"iconDay"] intValue];
+    self.iconCodeNight = [jsonData[@"iconNight"] intValue];
+    self.windDirDay = jsonData[@"windDirDay"];
+    self.windDirNight = jsonData[@"windDirNight"];
+    self.windScaleDay = jsonData[@"windScaleDay"];
+    self.windScaleNight = jsonData[@"windScaleNight"];
+    self.windSpeedDay = jsonData[@"windSpeedDay"];
+    self.windSpeedNight = jsonData[@"windSpeedNight"];
     self.tempMax = [jsonData[@"tempMax"] intValue];
     self.tempMin = [jsonData[@"tempMin"] intValue];
 }
@@ -91,20 +118,21 @@ static const NSString *key = @"160598640a6f42ebbc584183a10b5a70";
 @implementation WeatherData
 -(instancetype) copyWithZone:(NSZone *)zone {
     COPYBEFOREINIT(WeatherData);
-    copy.cityName = self.cityName;
-    copy.updateTime = self.updateTime;
-    copy.text = self.text;
-    copy.iconCode = self.iconCode;
-    copy.temp = self.temp;
-    copy.humidity = self.humidity;
-    copy.pressure = self.pressure;
-    copy.windDir = self.windDir;
-    copy.windScale = self.windScale;
-    copy.windSpeed = self.windSpeed;
-    copy.sportIndex = self.sportIndex;
-    copy.comfortIndex = self.comfortIndex;
-    copy.makeupIndex = self.makeupIndex;
-    copy.weekForcastData = self.weekForcastData;
+    COPYPROPERTY(cityName);
+    COPYPROPERTY(updateTime);
+    COPYPROPERTY(text);
+    COPYPROPERTY(iconCode);
+    COPYPROPERTY(temp);
+    COPYPROPERTY(humidity);
+    COPYPROPERTY(pressure);
+    COPYPROPERTY(windDir);
+    COPYPROPERTY(windScale);
+    COPYPROPERTY(windSpeed);
+    COPYPROPERTY(comfortIndex);
+    COPYPROPERTY(sportIndex);
+    COPYPROPERTY(makeupIndex);
+    COPYPROPERTY(weekForcastData);
+    
     return copy;
 }
 -(instancetype) init {
@@ -287,20 +315,10 @@ static const NSString *key = @"160598640a6f42ebbc584183a10b5a70";
     };
     void (^decodeBlock)(NSDictionary *) = ^void(NSDictionary* jsonData) {
         [self decodeJsonDictionaryForForcast:jsonData];
-        NSNotification *notification = [[NSNotification alloc] initWithName:@"weatherWeekForcastDidGet" object:nil userInfo:@{@"key":self}];
+        NSNotification *notification = [[NSNotification alloc] initWithName:@"weatherForcastDidGet" object:nil userInfo:@{@"key":self}];
         [[NSNotificationCenter defaultCenter] postNotification:notification];
     };
     [self getDataOnline:url :formatBlock :decodeBlock];
 }
 @end
 
-@implementation UIViewControllerWithWeatherData
--(instancetype) init {
-    self = [super init];
-    if (self) {
-        WeatherData * __strong wd = [[WeatherData alloc] init];
-        self.weatherData = wd;
-    }
-    return self;
-}
-@end

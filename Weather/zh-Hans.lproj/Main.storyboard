@@ -11,18 +11,32 @@
         <!--recentForecast-->
         <scene sceneID="ZWk-4l-oyi">
             <objects>
-                <viewController title="recentForecast" id="joe-te-qpT" sceneMemberID="viewController">
+                <viewController title="recentForecast" id="joe-te-qpT" customClass="ForcastViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BVM-J2-ncS">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EZZ-GJ-LOK" userLabel="cityButton">
+                                <rect key="frame" x="163" y="44" width="65" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="+ 选择城市"/>
+                                <connections>
+                                    <segue destination="Nh1-Ni-M8p" kind="show" id="Y6s-mf-n8G"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Ls5-Ck-Q9Q"/>
                         <color key="backgroundColor" systemColor="systemGray4Color"/>
                     </view>
                     <tabBarItem key="tabBarItem" tag="2" title="近期预测" id="UUt-zg-BXI"/>
+                    <connections>
+                        <outlet property="cityButton" destination="EZZ-GJ-LOK" id="MsK-zT-tnj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xSv-Tc-01o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-483" y="579"/>
+            <point key="canvasLocation" x="-483.07692307692304" y="578.67298578199052"/>
         </scene>
         <!--lifeIndex-->
         <scene sceneID="ZjW-eP-6r7">
@@ -166,7 +180,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="NBI-DP-9VV"/>
+        <segue reference="Y6s-mf-n8G"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">

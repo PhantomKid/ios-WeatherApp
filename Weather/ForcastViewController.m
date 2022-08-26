@@ -122,7 +122,6 @@
     }
     [self loadViewWithWeatherForcastData:nil];
 }
-
 -(void) viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"weatherForcastDidGet" object:nil];

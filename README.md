@@ -54,3 +54,4 @@
 6. WeatherIndexController: 天气指数数据展示界面类
 7. ForcastViewController: 近期天气预报展示界面类
 8. PlaceSelectionViewController: 近期天气预报展示界面类
+9. QWeather-Icons是和风天气提供的开源天气图标库
